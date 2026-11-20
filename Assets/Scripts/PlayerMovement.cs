@@ -29,19 +29,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Movimiento
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
         movementInput = new Vector2(x, z).normalized;
 
-        // Correr con Shift
         isSprinting = Input.GetKey(KeyCode.LeftShift);
 
-        // Comprobar si está en el suelo
         CheckGround();
 
-        // Saltar con Espacio
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             jumpRequested = true;
@@ -69,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 velocity = move * currentSpeed;
 
-        // Mantener la velocidad vertical del Rigidbody
         velocity.y = rb.linearVelocity.y;
 
         rb.linearVelocity = velocity;
